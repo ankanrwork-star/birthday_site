@@ -24,9 +24,9 @@ export default function Cake() {
     const r = btn.current.getBoundingClientRect()
     setBlown(true)
     setRound((n) => n + 1)
-    fx.confetti(170, r.left + r.width / 2, r.top)
-    fx.hearts(30)
-    setTimeout(() => fx.sparkles(innerWidth / 2, innerHeight * 0.4, 24), 300)
+    fx.confetti(70, r.left + r.width / 2, r.top)
+    fx.hearts(10)
+    setTimeout(() => fx.sparkles(innerWidth / 2, innerHeight * 0.4, 12), 300)
   }
 
   return (

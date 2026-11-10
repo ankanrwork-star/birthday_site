@@ -28,8 +28,8 @@ function Page() {
   const wishesRef = useRef(null)
 
   const start = () => {
-    fx.confetti(140, innerWidth / 2, innerHeight * 0.6)
-    fx.hearts(28)
+    fx.confetti(60, innerWidth / 2, innerHeight * 0.6)
+    fx.hearts(10)
     setRevealed(true)
     setTimeout(() => { const el = document.getElementById('cake'); el && glideTo(el) }, 700)
   }

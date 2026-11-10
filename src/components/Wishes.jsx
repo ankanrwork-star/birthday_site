@@ -49,8 +49,8 @@ export default function Wishes() {
 
   const openWish = (i, e) => {
     const r = e.currentTarget.getBoundingClientRect()
-    fx.sparkles(r.left + r.width / 2, r.top + r.height / 2)
-    fx.hearts(10)
+    fx.sparkles(r.left + r.width / 2, r.top + r.height / 2, 10)
+    fx.hearts(5)
     setOpen({ ...WISHES[i] })
     setViewed((prev) => {
       const next = new Set(prev).add(i)

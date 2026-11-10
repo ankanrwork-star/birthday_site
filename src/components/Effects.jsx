@@ -5,6 +5,7 @@ export const useFx = () => useContext(FxContext)
 
 const COLORS = ['#ff4d6d', '#ff8fab', '#c9184a', '#ffb3c6', '#ffd166', '#ffffff']
 const HEARTS = ['💖', '💗', '💕', '❤️', '🩷']
+const MAX_PARTICLES = 180 // hard cap on live particles so bursts can never pile up
 const sprites = {}
 const sprite = (ch) => {
   if (!sprites[ch]) {
@@ -63,6 +64,7 @@ export function FxProvider({ children }) {
 
   const add = useCallback((list) => {
     parts.current.push(...list)
+    if (parts.current.length > MAX_PARTICLES) parts.current.splice(0, parts.current.length - MAX_PARTICLES)
     if (!raf.current) { last.current = performance.now(); raf.current = requestAnimationFrame(tick) }
   }, [tick])
 
@@ -82,7 +84,7 @@ export function FxProvider({ children }) {
     confetti(n = 100, x = innerWidth / 2, y = innerHeight / 2) {
       add(Array.from({ length: n }, () => {
         const a = rand(0, Math.PI * 2), s = rand(4, 13)
-        const life = rand(70, 150)
+        const life = rand(55, 105)
         return { kind: 'rect', x, y, vx: Math.cos(a) * s, vy: Math.sin(a) * s - 5, g: 0.22, rot: rand(0, 6),
           vr: rand(-0.3, 0.3), size: rand(6, 12), ratio: rand(0.4, 1), color: COLORS[(Math.random() * COLORS.length) | 0], life, max: life }
       }))
@@ -106,11 +108,11 @@ export function FxProvider({ children }) {
     },
     finale() {
       const { confetti, hearts, sparkles } = api.current
-      confetti(220, innerWidth / 2, innerHeight * 0.4)
-      hearts(60)
-      setTimeout(() => confetti(140, innerWidth * 0.15, innerHeight * 0.55), 350)
-      setTimeout(() => confetti(140, innerWidth * 0.85, innerHeight * 0.55), 650)
-      for (let i = 0; i < 10; i++) setTimeout(() => sparkles(rand(0, innerWidth), rand(0, innerHeight), 14), i * 220)
+      confetti(90, innerWidth / 2, innerHeight * 0.4)
+      hearts(20)
+      setTimeout(() => confetti(45, innerWidth * 0.15, innerHeight * 0.55), 350)
+      setTimeout(() => confetti(45, innerWidth * 0.85, innerHeight * 0.55), 650)
+      for (let i = 0; i < 6; i++) setTimeout(() => sparkles(rand(0, innerWidth), rand(0, innerHeight), 8), i * 300)
     },
   })
 
