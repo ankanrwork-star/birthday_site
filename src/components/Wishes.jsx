@@ -3,9 +3,9 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { WISHES, ULTIMATE } from '../data'
 import { useFx } from './Effects'
 
-const KEY = 'bday-viewed-v2'
+const KEY = 'bday-viewed-session'
 const loadViewed = () => {
-  try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')) } catch { return new Set() }
+  try { return new Set(JSON.parse(sessionStorage.getItem(KEY) || '[]')) } catch { return new Set() }
 }
 
 const grid = { hidden: {}, show: { transition: { staggerChildren: 0.12, delayChildren: 0.3 } } }
@@ -54,7 +54,7 @@ export default function Wishes() {
     setOpen({ ...WISHES[i] })
     setViewed((prev) => {
       const next = new Set(prev).add(i)
-      try { localStorage.setItem(KEY, JSON.stringify([...next])) } catch {}
+      try { sessionStorage.setItem(KEY, JSON.stringify([...next])) } catch {}
       return next
     })
   }
