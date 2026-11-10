@@ -50,8 +50,29 @@ button { font: inherit; border: 0; cursor: pointer; color: inherit; }
 /* ---------- Wave divider ---------- */
 .wave { display: block; width: 100%; height: clamp(50px, 8vw, 120px); fill: rgba(255,255,255,.55); margin-bottom: -1px; }
 
+/* ---------- Cake ---------- */
+.cake-sec { background: rgba(255,255,255,.6); padding: 60px 20px 30px; text-align: center; }
+.cake-sec__sub { color: var(--wine); opacity: .85; margin: 8px 0 8px; min-height: 1.5em; }
+.cake { position: relative; width: min(460px, 90vw); margin: 24px auto 12px; }
+.cake svg { position: relative; display: block; width: 100%; height: auto; overflow: visible; }
+.cake__glow { position: absolute; left: 50%; top: 0; width: 80%; aspect-ratio: 1; transform: translateX(-50%); border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,209,102,.75), rgba(255,143,171,.25) 45%, transparent 68%); transition: opacity 1.2s ease; }
+.cake--blown .cake__glow { opacity: 0; }
+.flame { transform-box: fill-box; transform-origin: 50% 100%; animation: flicker .9s ease-in-out infinite alternate;
+  transition: opacity .4s ease, transform .4s ease; }
+@keyframes flicker { from { transform: scale(1, 1) rotate(-2.5deg); } to { transform: scale(.9, 1.1) rotate(2.5deg); } }
+.cake--blown .flame { animation: none; opacity: 0; transform: translateX(10px) scale(.15, .05) rotate(12deg); }
+.smoke { fill: #fff; opacity: 0; transform-box: fill-box; transform-origin: center; animation: smoke 2.4s ease-out forwards; }
+@keyframes smoke { 0% { opacity: 0; transform: translate(0, 0) scale(.5); } 20% { opacity: .75; } 100% { opacity: 0; transform: translate(var(--dx), -70px) scale(2.4); } }
+.cake-sec__actions { min-height: 120px; display: flex; justify-content: center; align-items: center; padding-top: 18px; }
+.cake-sec__after { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+.btn--ghost { padding: 13px 26px; background: rgba(255,255,255,.8); color: var(--deep); border: 2px solid var(--pink); transition: transform .3s, background .3s; }
+.btn--ghost:hover { transform: translateY(-3px); background: #fff; }
+.btn--sm2 { padding: 13px 28px; font-size: 1rem; }
+
 /* ---------- Wishes ---------- */
 .wishes { background: rgba(255,255,255,.6); padding: 40px 20px 120px; text-align: center; min-height: 100svh; }
+.cake-sec h2 { font-family: var(--serif); font-size: clamp(2rem, 6vw, 3.4rem); color: var(--deep); }
 .wishes > div:first-child, .grid, .ultimate-wrap { max-width: 1000px; margin-inline: auto; }
 .wishes h2 { font-family: var(--serif); font-size: clamp(2rem, 6vw, 3.4rem); color: var(--deep); }
 .wishes__sub { color: var(--wine); opacity: .8; margin: 8px 0 22px; }

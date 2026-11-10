@@ -19,3 +19,5 @@ export const ULTIMATE = {
     "Your kindness, your laughter and your heart make everything around you better. I hope this year brings you every bit of joy you've given to others.\n\n" +
     'Happy Birthday. You are loved more than you know. 💖',
 }
+
+export const AGE = 25
