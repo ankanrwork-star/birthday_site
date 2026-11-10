@@ -5,6 +5,15 @@ export const useFx = () => useContext(FxContext)
 
 const COLORS = ['#ff4d6d', '#ff8fab', '#c9184a', '#ffb3c6', '#ffd166', '#ffffff']
 const HEARTS = ['💖', '💗', '💕', '❤️', '🩷']
+const sprites = {}
+const sprite = (ch) => {
+  if (!sprites[ch]) {
+    const c = document.createElement('canvas'); c.width = c.height = 64
+    const x = c.getContext('2d'); x.font = '50px serif'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(ch, 32, 34)
+    sprites[ch] = c
+  }
+  return sprites[ch]
+}
 const rand = (a, b) => a + Math.random() * (b - a)
 
 /** Canvas particle layer. Exposes confetti / hearts / sparkles through context. */
@@ -35,10 +44,7 @@ export function FxProvider({ children }) {
       ctx.translate(p.x, p.y)
       ctx.rotate(p.rot)
       if (p.kind === 'emoji') {
-        ctx.font = `${p.size}px serif`
-        ctx.textAlign = 'center'
-        ctx.textBaseline = 'middle'
-        ctx.fillText(p.char, 0, 0)
+        ctx.drawImage(sprite(p.char), -p.size / 2, -p.size / 2, p.size, p.size)
       } else if (p.kind === 'spark') {
         ctx.fillStyle = p.color
         const s = p.size * (0.5 + k)
@@ -63,7 +69,7 @@ export function FxProvider({ children }) {
   useEffect(() => {
     const resize = () => {
       const c = canvasRef.current
-      const d = Math.min(devicePixelRatio || 1, 2)
+      const d = Math.min(devicePixelRatio || 1, 1.5)
       c.width = innerWidth * d; c.height = innerHeight * d
       c.getContext('2d').setTransform(d, 0, 0, d, 0, 0)
     }
