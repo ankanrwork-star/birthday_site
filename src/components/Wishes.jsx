@@ -31,7 +31,7 @@ function Modal({ card, onClose }) {
         initial={{ scale: 0.5, opacity: 0, rotate: -6, y: 40 }}
         animate={{ scale: 1, opacity: 1, rotate: 0, y: 0 }}
         exit={{ scale: 0.8, opacity: 0, y: 30 }}
-        transition={{ type: 'spring', stiffness: 220, damping: 18 }}
+        transition={{ type: 'spring', stiffness: 260, damping: 24, mass: 0.8 }}
       >
         <motion.div className="modal__emoji" animate={{ scale: [1, 1.2, 1] }} transition={{ repeat: Infinity, duration: 2 }}>{card.icon}</motion.div>
         <h3>{card.title}</h3>
@@ -78,7 +78,7 @@ export default function Wishes() {
         <p className="wishes__count">{all ? 'All wishes opened 💝 — one last gift awaits' : `${count} of ${WISHES.length} opened`}</p>
       </motion.div>
 
-      <motion.div className="grid" variants={grid} initial="hidden" animate="show">
+      <motion.div className="grid" variants={grid} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.1 }}>
         {WISHES.map((w, i) => (
           <motion.button
             key={w.title}
@@ -97,13 +97,17 @@ export default function Wishes() {
 
       <motion.div
         className="ultimate-wrap"
-        initial={{ opacity: 0, scale: 0.7, y: 30 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ delay: 0.3 + WISHES.length * 0.12 + 0.5, type: 'spring', stiffness: 90, damping: 12 }}
+        initial={{ opacity: 0, scale: 0.8, y: 30 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.6 }}
+        transition={{ delay: 0.2, type: 'spring', stiffness: 90, damping: 14 }}
       >
-        <motion.button className="btn btn--ultimate" onClick={openUltimate} whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }}>
-          🎁 Ultimate Birthday Message
-        </motion.button>
+        <div className="halo">
+          <motion.button className="btn btn--ultimate" onClick={openUltimate} whileHover={{ scale: 1.06 }} whileTap={{ scale: 0.96 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 20 }}>
+            🎁 Ultimate Birthday Message
+          </motion.button>
+        </div>
       </motion.div>
 
       <AnimatePresence>{open && <Modal card={open} onClose={() => setOpen(null)} />}</AnimatePresence>

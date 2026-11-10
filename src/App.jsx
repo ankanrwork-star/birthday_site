@@ -1,8 +1,25 @@
 import { useRef, useState } from 'react'
+import { MotionConfig } from 'framer-motion'
 import Background from './components/Background'
 import Hero from './components/Hero'
 import Wishes from './components/Wishes'
 import { FxProvider, useFx } from './components/Effects'
+
+const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches
+
+/** Eased glide to an element (native smooth scroll is linear and abrupt). */
+function glideTo(el, ms = 1500) {
+  const to = el.getBoundingClientRect().top + scrollY
+  if (reduced()) return scrollTo(0, to)
+  const from = scrollY, dist = to - from, t0 = performance.now()
+  const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2)
+  const step = (now) => {
+    const p = Math.min((now - t0) / ms, 1)
+    scrollTo(0, from + dist * ease(p))
+    if (p < 1) requestAnimationFrame(step)
+  }
+  requestAnimationFrame(step)
+}
 
 function Page() {
   const fx = useFx()
@@ -13,7 +30,7 @@ function Page() {
     fx.confetti(140, innerWidth / 2, innerHeight * 0.6)
     fx.hearts(28)
     setRevealed(true)
-    setTimeout(() => document.getElementById('wishes')?.scrollIntoView({ behavior: 'smooth' }), 900)
+    setTimeout(() => { const el = document.getElementById('wishes'); el && glideTo(el) }, 700)
   }
 
   return (
@@ -35,5 +52,9 @@ function Page() {
 }
 
 export default function App() {
-  return <FxProvider><Page /></FxProvider>
+  return (
+    <MotionConfig reducedMotion="user">
+      <FxProvider><Page /></FxProvider>
+    </MotionConfig>
+  )
 }

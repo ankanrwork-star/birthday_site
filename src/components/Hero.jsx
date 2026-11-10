@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { RECIPIENT } from '../data'
 
-const word = { hidden: { y: 40, opacity: 0, filter: 'blur(8px)' }, show: { y: 0, opacity: 1, filter: 'blur(0px)' } }
+const word = { hidden: { y: 40, opacity: 0 }, show: { y: 0, opacity: 1 } }
 
 export default function Hero({ revealed, onStart }) {
   const title = ['Happy', 'Birthday,']
@@ -25,17 +25,22 @@ export default function Hero({ revealed, onStart }) {
       </motion.p>
 
       {!revealed && (
-        <motion.button
-          className="btn btn--primary"
-          onClick={onStart}
+        <motion.div
+          className="halo"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.8 }}
-          whileHover={{ scale: 1.07 }}
-          whileTap={{ scale: 0.95 }}
+          transition={{ delay: 1.5, duration: 0.8, ease: [0.2, 0.8, 0.2, 1] }}
         >
-          <span className="btn__glow" /> Tap for your surprise 🎉
-        </motion.button>
+          <motion.button
+            className="btn btn--primary"
+            onClick={onStart}
+            whileHover={{ scale: 1.06 }}
+            whileTap={{ scale: 0.96 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+          >
+            <span className="btn__glow" /> Tap for your surprise 🎉
+          </motion.button>
+        </motion.div>
       )}
 
       {revealed && (

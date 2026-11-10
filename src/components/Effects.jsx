@@ -41,8 +41,6 @@ export function FxProvider({ children }) {
         ctx.fillText(p.char, 0, 0)
       } else if (p.kind === 'spark') {
         ctx.fillStyle = p.color
-        ctx.shadowColor = '#ff4d6d'
-        ctx.shadowBlur = 12
         const s = p.size * (0.5 + k)
         ctx.beginPath()
         ctx.moveTo(0, -s); ctx.lineTo(s * 0.25, -s * 0.25); ctx.lineTo(s, 0); ctx.lineTo(s * 0.25, s * 0.25)
