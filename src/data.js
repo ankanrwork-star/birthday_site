@@ -21,3 +21,13 @@ export const ULTIMATE = {
 }
 
 export const AGE = 25
+
+// 📸 Photos for the "Through the Years" section, oldest → newest.
+// To use a real photo: drop the file into public/photos/ and set `src`, e.g. src: 'photos/age-5.jpg'
+// Leave `src` empty to keep the placeholder. Edit `age` and `caption` freely.
+export const MEMORIES = [
+  { age: 5, caption: 'Where it all began', src: '' },
+  { age: 12, caption: 'Growing up fast', src: '' },
+  { age: 18, caption: 'Big dreams', src: '' },
+  { age: 25, caption: 'Look how far you have come', src: '' },
+]

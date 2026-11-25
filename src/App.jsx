@@ -4,6 +4,7 @@ import Background from './components/Background'
 import Hero from './components/Hero'
 import Wishes from './components/Wishes'
 import Cake from './components/Cake'
+import Memories from './components/Memories'
 import { FxProvider, useFx } from './components/Effects'
 
 const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -31,7 +32,7 @@ function Page() {
     fx.confetti(60, innerWidth / 2, innerHeight * 0.6)
     fx.hearts(10)
     setRevealed(true)
-    setTimeout(() => { const el = document.getElementById('cake'); el && glideTo(el) }, 700)
+    setTimeout(() => { const el = document.getElementById('years'); el && glideTo(el) }, 700)
   }
 
   return (
@@ -44,6 +45,7 @@ function Page() {
             <svg className="wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
               <path d="M0,64 C240,128 480,0 720,48 C960,96 1200,16 1440,64 L1440,120 L0,120 Z" />
             </svg>
+            <Memories />
             <Cake />
             <div ref={wishesRef}><Wishes /></div>
           </>
