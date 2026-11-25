@@ -16,12 +16,11 @@ function Photo({ m, i }) {
   return (
     <motion.figure className={`polaroid ${i % 2 ? 'polaroid--b' : 'polaroid--a'}`} variants={card} custom={i}
       whileHover={{ y: -10, rotate: 0, scale: 1.04 }} transition={{ type: 'spring', stiffness: 250, damping: 20 }}>
-      <span className="polaroid__age">Age {m.age}</span>
       <div className="polaroid__frame">
         {showImg ? (
-          <img src={src} alt={`Age ${m.age}: ${m.caption}`} loading="lazy" decoding="async" onError={() => setBroken(true)} />
+          <img src={src} alt={m.caption} loading="lazy" decoding="async" onError={() => setBroken(true)} />
         ) : (
-          <div className="polaroid__ph" aria-label={`Placeholder for the age ${m.age} photo`}>
+          <div className="polaroid__ph" aria-label={`Placeholder for photo ${i + 1}`}>
             <span>📷</span>
             <small>Photo {i + 1}</small>
           </div>

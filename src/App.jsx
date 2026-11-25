@@ -5,6 +5,7 @@ import Hero from './components/Hero'
 import Wishes from './components/Wishes'
 import Cake from './components/Cake'
 import Memories from './components/Memories'
+import Finale from './components/Finale'
 import { FxProvider, useFx } from './components/Effects'
 
 const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -48,6 +49,7 @@ function Page() {
             <Memories />
             <Cake />
             <div ref={wishesRef}><Wishes /></div>
+            <Finale />
           </>
         )}
       </main>

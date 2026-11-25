@@ -56,8 +56,6 @@ button { font: inherit; border: 0; cursor: pointer; color: inherit; }
 .years__grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; align-items: start; }
 .polaroid { position: relative; background: #fff; padding: 12px 12px 16px; border-radius: 6px; box-shadow: 0 10px 28px rgba(128,15,47,.2); will-change: transform; }
 .polaroid--b { margin-top: 34px; }
-.polaroid__age { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); z-index: 1; padding: 5px 16px; border-radius: 99px;
-  color: #fff; font-weight: 600; font-size: .9rem; white-space: nowrap; background: linear-gradient(135deg, var(--rose), var(--deep)); box-shadow: 0 4px 12px rgba(201,24,74,.4); }
 .polaroid__frame { aspect-ratio: 4 / 5; overflow: hidden; border-radius: 3px; background: #ffe0e8; }
 .polaroid__frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .polaroid__ph { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
@@ -67,6 +65,13 @@ button { font: inherit; border: 0; cursor: pointer; color: inherit; }
 .polaroid figcaption { margin-top: 12px; font-family: var(--serif); font-style: italic; color: var(--wine); font-size: 1.05rem; }
 @media (max-width: 900px) { .years__grid { grid-template-columns: repeat(2, 1fr); gap: 34px 20px; } .polaroid--b { margin-top: 20px; } }
 @media (max-width: 420px) { .years__grid { gap: 30px 12px; } .polaroid { padding: 8px 8px 12px; } .polaroid figcaption { font-size: .9rem; } }
+
+/* ---------- Finale (YouTube button) ---------- */
+.finale { background: rgba(255,255,255,.6); padding: 20px 20px 110px; text-align: center; }
+.finale h2 { font-family: var(--serif); font-size: clamp(1.8rem, 5vw, 2.8rem); color: var(--deep); }
+.finale p { color: var(--wine); opacity: .85; margin: 8px 0 26px; }
+.btn--link { display: inline-block; text-decoration: none; }
+.btn--off { opacity: .75; cursor: default; }
 
 /* ---------- Cake ---------- */
 .cake-sec { background: rgba(255,255,255,.6); padding: 60px 20px 30px; text-align: center; }
