@@ -18,7 +18,7 @@ function Photo({ m, i }) {
       whileHover={{ y: -10, rotate: 0, scale: 1.04 }} transition={{ type: 'spring', stiffness: 250, damping: 20 }}>
       <div className="polaroid__frame">
         {showImg ? (
-          <img src={src} alt={m.caption} loading="lazy" decoding="async" onError={() => setBroken(true)} />
+          <img src={src} alt={`Photo ${i + 1}`} loading="lazy" decoding="async" onError={() => setBroken(true)} />
         ) : (
           <div className="polaroid__ph" aria-label={`Placeholder for photo ${i + 1}`}>
             <span>📷</span>
@@ -26,7 +26,6 @@ function Photo({ m, i }) {
           </div>
         )}
       </div>
-      <figcaption>{m.caption}</figcaption>
     </motion.figure>
   )
 }

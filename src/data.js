@@ -24,14 +24,14 @@ export const AGE = 25
 
 // 📸 Photos for the "Through the Years" section, oldest → newest.
 // To use a real photo: drop the file into public/photos/ and set `src`, e.g. src: 'photos/age-5.jpg'
-// Leave `src` empty to keep the placeholder. Edit `caption` freely.
+// Leave `src` empty to keep the placeholder. 
 export const MEMORIES = [
-  { caption: 'Where it all began', src: '' },
-  { caption: 'Growing up fast', src: '' },
-  { caption: 'Big dreams', src: '' },
-  { caption: 'Look how far you have come', src: '' },
+  { src: 'photos/1.jpeg' },
+  { src: 'photos/2.jpeg' },
+  { src: 'photos/3.jpeg' },
+  { src: 'photos/4.jpeg' },
 ]
 
 // 🎬 Paste your YouTube link here. The button at the end of the page opens it in a new tab.
-export const YOUTUBE_URL = ''
+export const YOUTUBE_URL = 'https://youtube.com/shorts/APesZ_KtFAs?si=meLIsh8BCpUXLm4y'
 export const YOUTUBE_LABEL = 'Watch your special video'

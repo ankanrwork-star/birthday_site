@@ -62,9 +62,8 @@ button { font: inherit; border: 0; cursor: pointer; color: inherit; }
   color: var(--deep); background: repeating-linear-gradient(45deg, #ffe0e8, #ffe0e8 12px, #ffd0dc 12px, #ffd0dc 24px); }
 .polaroid__ph span { font-size: 2.4rem; }
 .polaroid__ph small { font-weight: 600; opacity: .75; }
-.polaroid figcaption { margin-top: 12px; font-family: var(--serif); font-style: italic; color: var(--wine); font-size: 1.05rem; }
 @media (max-width: 900px) { .years__grid { grid-template-columns: repeat(2, 1fr); gap: 34px 20px; } .polaroid--b { margin-top: 20px; } }
-@media (max-width: 420px) { .years__grid { gap: 30px 12px; } .polaroid { padding: 8px 8px 12px; } .polaroid figcaption { font-size: .9rem; } }
+@media (max-width: 420px) { .years__grid { gap: 30px 12px; } .polaroid { padding: 8px 8px 12px; } }
 
 /* ---------- Finale (YouTube button) ---------- */
 .finale { background: rgba(255,255,255,.6); padding: 20px 20px 110px; text-align: center; }
