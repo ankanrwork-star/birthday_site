@@ -1,7 +1,8 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { AGE, RECIPIENT } from '../data'
 import { useFx } from './Effects'
+import { playBirthday, stopBirthday } from '../sound'
 
 const ordinal = (n) => {
   const s = ['th', 'st', 'nd', 'rd'], v = n % 100
@@ -17,12 +18,15 @@ export default function Cake() {
   const [blown, setBlown] = useState(false)
   const [round, setRound] = useState(0) // restarts the smoke animation on every blow
 
+  useEffect(() => stopBirthday, [])
+
   const digits = String(AGE).split('')
   const xs = digits.map((_, i) => 200 + (i - (digits.length - 1) / 2) * 74)
 
   const blow = () => {
     const r = btn.current.getBoundingClientRect()
     setBlown(true)
+    playBirthday()
     setRound((n) => n + 1)
     fx.confetti(70, r.left + r.width / 2, r.top)
     fx.hearts(10)
@@ -99,7 +103,7 @@ export default function Cake() {
             </motion.div>
           ) : (
             <motion.div key="after" className="cake-sec__after" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ delay: 0.5 }}>
-              <button className="btn btn--ghost" onClick={() => setBlown(false)}>🔥 Light them again</button>
+              <button className="btn btn--ghost" onClick={() => { setBlown(false); stopBirthday() }}>🔥 Light them again</button>
               <button className="btn btn--primary btn--sm2" onClick={() => document.getElementById('wishes')?.scrollIntoView({ behavior: 'smooth' })}>
                 Open your wishes 💌
               </button>
